@@ -42,13 +42,13 @@ function Contactlist({backgroundColor = "blue"}){
 
         try{
             await axios.post('https://cloud-api-vcard-production-34ea.up.railway.app/',{
-                address: state.address,
-                birthday: state.birthday,
-                firstname: state.firstname,
-                name: state.name,
-                organization: state.organization,
-                email: state.email,
-                telephone: state.telephone
+                address: input.address,
+                birthday: input.birthday,
+                firstname: input.firstname,
+                name: input.name,
+                organization: input.organization,
+                email: input.email,
+                telephone: input.telephone
             })
         }catch(err){console.error(err)}
     }
