@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 
-function Contactlist({backgroundColor = "blue"}){
+function Contactlist({backgroundColor = "lightblue"}){
 
     const [contacts, setContacts] = useState()
     const [input, setInput] = useState({
