@@ -76,7 +76,7 @@ function Contactlist({backgroundColor = "lightblue"}){
                         </thead>
                         <tbody>
                             {contacts.map((contact,i)=>
-                                    <tr key={i}>
+                                    <tr key={i} className='tr'>
                                         <td>{contact.address}</td>
                                         <td>{contact.birthday}</td>
                                         <td>{contact.firstname}</td>
@@ -93,12 +93,19 @@ function Contactlist({backgroundColor = "lightblue"}){
             }
             <form onSubmit={handleFormSubmit}>
                 <input type="hidden" name="version" value={"3.0"}/>
+                <label htmlFor="address">address</label>
                 <input type="text" name="address" value={input.address} onChange={handleInputChange}/>
+                <label htmlFor="birthday">birthday</label>
                 <input type="text" name="birthday" value={input.birthday} onChange={handleInputChange}/>
+                <label htmlFor="firstname">firstname</label>
                 <input type="text" name="firstname" value={input.firstname} onChange={handleInputChange}/>
+                <label htmlFor="name">name</label>
                 <input type="text" name="name" value={input.name} onChange={handleInputChange}/>
+                <label htmlFor="organization">organization</label>
                 <input type="text" name="organization" value={input.organization} onChange={handleInputChange}/>
+                <label htmlFor="email">email</label>
                 <input type="text" name="email" value={input.email} onChange={handleInputChange}/>
+                <label htmlFor="telephone">telephone</label>
                 <input type="number" name="telephone" value={input.telephone} onChange={handleInputChange}/>
                 <button type='submit'>submit</button>
 

@@ -50,6 +50,16 @@ thead tr th{
   text-align: left;
 }
 
-tbody tr{
-  margin-top: 1rem;
+.tr{
+  margin: 1rem;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  width: 30vw;
+  margin: 0 auto;
+}
+input{
+  margin-bottom: .7rem;
 }
