@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from 'react';
+import axios from 'axios';
 
 
 function Contactlist(){
@@ -19,7 +20,7 @@ function Contactlist(){
             }
         }
 
-
+        getlist()
 
     },[])
 
