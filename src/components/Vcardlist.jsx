@@ -1,16 +1,24 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 
-
-function Contactlist(){
+function Contactlist({backgroundColor = "blue"}){
 
     const [contacts, setContacts] = useState()
-
+    const [input, setInput] = useState({
+        address: '',
+        birthday: '',
+        firstname: '',
+        name: '',
+        organization: '',
+        email: '',
+        telephone: ''
+        
+    })
 
     useEffect(() =>{
 
         async function getlist(){
-
+            console.log("halla")
             try{
                 const response = await axios.get('https://cloud-cache.onrender.com/contacts')
                 console.log(response)
@@ -24,28 +32,81 @@ function Contactlist(){
 
     },[])
 
+    const handleInputChange = (event) => {
+        const {name, value} = event.target
+        setInput(prevState => ({ ...prevState, [name] : value}))
+    }
+
+    const handleFormSubmit = async (event) => {
+        event.preventDefault()
+
+        try{
+            await axios.post('https://cloud-api-vcard-production-34ea.up.railway.app/',{
+                address: state.address,
+                birthday: state.birthday,
+                firstname: state.firstname,
+                name: state.name,
+                organization: state.organization,
+                email: state.email,
+                telephone: state.telephone
+            })
+        }catch(err){console.error(err)}
+    }
+
+    const styles = {
+        backgroundColor,
+        fontWeight: "bold"
+    }
+
     return (
         <>
-            {contacts?.lenght
+            {contacts?.length
                 ? (
-                    <ul>
-                        {contacts.map((contact,i)=>
-                            <tr key={i}>
-                                <li>{contact}</li>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style={styles}>address</th>
+                                <th style={styles}>birthday</th>
+                                <th style={styles}>firstname</th>
+                                <th style={styles}>name</th>
+                                <th style={styles}>organization</th>
+                                <th style={styles}>email</th>
+                                <th style={styles}>telephone</th>
                             </tr>
-                        
-                        
-                        )}
-                    </ul>
-
+                        </thead>
+                        <tbody>
+                            {contacts.map((contact,i)=>
+                                    <tr key={i}>
+                                        <td>{contact.address}</td>
+                                        <td>{contact.birthday}</td>
+                                        <td>{contact.firstname}</td>
+                                        <td>{contact.name}</td>
+                                        <td>{contact.organization}</td>
+                                        <td>{contact.email}</td>
+                                        <td>{contact.telephone}</td>
+                                    </tr>
+                            )}
+                        </tbody>
+                    </table>
                 )
-                : <p> no matches</p>
-            
-            
+                : <p>no matches</p>
             }
+            <form onSubmit={handleFormSubmit}>
+                <input type="hidden" name="version" value={"3.0"}/>
+                <input type="text" name="address" value={input.address} onChange={handleInputChange}/>
+                <input type="text" name="birthday" value={input.birthday} onChange={handleInputChange}/>
+                <input type="text" name="firstname" value={input.firstname} onChange={handleInputChange}/>
+                <input type="text" name="name" value={input.name} onChange={handleInputChange}/>
+                <input type="text" name="organization" value={input.organization} onChange={handleInputChange}/>
+                <input type="text" name="email" value={input.email} onChange={handleInputChange}/>
+                <input type="number" name="telephone" value={input.telephone} onChange={handleInputChange}/>
+                <button type='submit'>submit</button>
+
+            </form>
         </>
     )
 
 }
+
 
 export default Contactlist

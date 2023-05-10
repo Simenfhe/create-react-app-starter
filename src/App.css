@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+table{
+  width: 90vw;
+  margin: 1rem;
+}
+
+thead{
+  width: 100%;
+}
+
+thead tr th{
+  text-align: left;
+}
+
+tbody tr{
+  margin-top: 1rem;
+}
